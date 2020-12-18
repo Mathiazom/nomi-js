@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>nomi</title>
+
+  <link rel="shortcut icon" type="image/jpg" href="nomi-favicon.png" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles/nomi_styles.css">
+  <link rel="stylesheet" type="text/css" href="styles/toastify.css">
+  <script src="scripts/toastify.js"></script>
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <!-- Vue development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+  <script async src="scripts/nomi.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <div id="main-container">
+      <div>
+        <div id="name-container">
+          <h1 id="name" onclick="copyToClipboard(this.innerText)">
+            <span>{{adjective}}</span><span>{{noun}}</span>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<footer>
+  <p class="footer-title">nomi</p>
+</footer>
+
+</html>
