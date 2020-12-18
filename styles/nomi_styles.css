@@ -35,15 +35,15 @@ a{
   cursor: pointer;
 }
 
-#name :nth-child(1){
+#name :nth-child(1), .controls-generate:hover{
   color: rgb(40, 153, 153);
 }
 
-#name :nth-child(2){
+#name :nth-child(2), .controls-copy:hover{
   color: rgb(235, 53, 92);
 }
 
-.refresh-container{
+.controls{
   display: flex;
   padding: 25px 20px;
   margin: 0 auto;
@@ -51,13 +51,13 @@ a{
   justify-content: center;
 }
 
-.refresh-icon{
-  color: #454545;
-  font-weight: bold;
-  font-size: 20px;
+.controls i{
+  color: #AAA;
+  font-size: calc(1em + 0.5vw);
+  margin: 10px 15px;
 }
 
-.refresh-icon:hover{
+.controls i:hover{
   cursor: pointer;
 }
 
@@ -75,14 +75,4 @@ footer{
 
 .footer-title {
   margin-bottom: 5px;
-}
-
-.keymap {
-  font-weight: 200;
-  margin: 0;
-  font-size: calc(0.7em + 0.1vw);
-}
-
-.keymap p {
-  margin: 0;
 }
