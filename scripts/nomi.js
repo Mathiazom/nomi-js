@@ -4,6 +4,11 @@ let app = new Vue({
     adjective: null,
     noun: null
   },
+  computed: {
+    name(){
+      return this.adjective + this.noun;
+    }
+  },
   created() {
     window.addEventListener('keydown', this.onKey)
   },
@@ -14,8 +19,10 @@ let app = new Vue({
     onKey(event) {
       switch (event.key) {
         case 'n':
-        case 'r':
           this.newName();
+          break;
+        case 'c':
+          this.copyToClipboard(this.name);
           break;
       }
     },
@@ -41,6 +48,18 @@ let app = new Vue({
     async readTextFile(filename) {
       const response = await fetch(filename);
       return await response.text();
+    },
+    copyToClipboard(text) {
+      let dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      Toastify({
+        text: "Copied to clipboard!",
+        duration: 2000
+      }).showToast();
     }
   },
   async beforeMount() {
