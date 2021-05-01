@@ -27,13 +27,13 @@
     <div id="main-container">
       <div>
         <div id="name-container">
-          <h1 id="name" @click="copyToClipboard(this.innerText)">
+          <h1 id="name" @click="copyNameToClipboard()">
             <span>{{adjective}}</span><span>{{noun}}</span>
           </h1>
         </div>
         <div class="controls">
           <i title="Generate new name (n)" @click="newName" class="controls-generate fas fa-redo-alt"></i>
-          <i title="Copy name (c)" @click="copyToClipboard(this.innerText)" class="controls-copy fas fa-copy"></i>
+          <i title="Copy name (c)" @click="copyNameToClipboard()" class="controls-copy fas fa-copy"></i>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ let app = new Vue({
           this.newName();
           break;
         case 'c':
-          this.copyToClipboard(this.name);
+          this.copyNameToClipboard();
           break;
       }
     },
@@ -49,15 +49,15 @@ let app = new Vue({
       const response = await fetch(filename);
       return await response.text();
     },
-    copyToClipboard(text) {
+    copyNameToClipboard() {
       let dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
-      dummy.value = text;
+      dummy.value = this.name;
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
       Toastify({
-        text: "Copied to clipboard!",
+        text: "Copied to clipboard 😽",
         duration: 2000
       }).showToast();
     }
