@@ -2,7 +2,9 @@ let app = new Vue({
   el: "#app",
   data: {
     adjective: null,
-    noun: null
+    noun: null,
+    adjective_list: null,
+    noun_list: null
   },
   computed: {
     name(){
@@ -26,28 +28,21 @@ let app = new Vue({
           break;
       }
     },
-    async newName() {
-      let name = await this.generateName();
-      this.updateName(name);
+    newName() {
+      this.adjective = this.randomElementFromList(this.adjective_list);
+      this.noun = this.randomElementFromList(this.noun_list);
     },
-    updateName(name) {
-      this.adjective = name[0];
-      this.noun = name[1];
+    randomElementFromList(list) {
+      return list[Math.floor(Math.random() * list.length)];
     },
-    async generateName() {
-      return [
-        await this.readRandomWordFromFile('adjectives.csv'),
-        await this.readRandomWordFromFile('nouns.csv')
-      ];
-    },
-    async readRandomWordFromFile(filename) {
-      const text = await this.readTextFile(filename);
-      const words = text.split("\n");
-      return words[Math.floor(Math.random() * words.length)].trim();
-    },
-    async readTextFile(filename) {
+    async readWordsFile(filename) {
       const response = await fetch(filename);
-      return await response.text();
+      const text = await response.text()
+      return text.split("\n");
+    },
+    async loadWordLists() {
+      this.adjective_list = await this.readWordsFile('adjectives.csv');
+      this.noun_list = await this.readWordsFile('nouns.csv');
     },
     copyNameToClipboard() {
       let dummy = document.createElement("textarea");
@@ -63,6 +58,7 @@ let app = new Vue({
     }
   },
   async beforeMount() {
-    await this.newName();
+    await this.loadWordLists();
+    this.newName();
   }
 })
